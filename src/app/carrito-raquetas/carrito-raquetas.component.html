@@ -1,0 +1,33 @@
+<div class="row mt-2 align-middle">
+    <div class="d-flex flex-nowrap p-2 align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="50" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        </svg>
+        <h1 class="fs-4 m-1">Carrito</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="list-group column m-2 row w-100" *ngFor="let raqueta of (listaDeCarrito$ | async)">
+      <div class="list-group-item d-flex flex-nowrap row w-100 mb-1 mt-1">
+        <div class="w-50">
+          <img width="100" [src]="raqueta.imagen" [alt]="raqueta.marca" class="rounded">
+        </div>
+        <div class="d-flex flex-nowrap w-50">
+          <div class="column">
+            <h2 class="mb-1 fs-6">{{raqueta.marca}} {{raqueta.modelo}}</h2>
+            <p>Cantidad: {{raqueta.cantidad}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="(listaDeCarrito$ | async)!.length > 0">
+      <button class="btn btn-outline-success btn-sm w-100" (click)="realizarCompra()">Comprar</button>
+    </div>
+  
+    <div class="alert alert-success mt-2" role="alert" *ngIf="compraRealizada">
+      <p>Muchas gracias por su compra, en breve nos pondremos en contacto para hacerle llegar su producto!</p>
+    </div>
+  </div>
+  
